@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://ct1fafb8xyrcx"]
+
+[ext_resource type="PackedScene" uid="uid://bb0y0udhcm6bg" path="res://main/player/Player.tscn" id="1_uoy6e"]
+[ext_resource type="Script" uid="uid://nxm8mnooau4o" path="res://scripts/third_person_controller.gd" id="2_6vwyx"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6vwyx"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_tuwd2"]
+sky_material = SubResource("ProceduralSkyMaterial_6vwyx")
+
+[sub_resource type="Environment" id="Environment_8o1bq"]
+background_mode = 2
+sky = SubResource("Sky_tuwd2")
+glow_enabled = true
+
+[node name="Node3D" type="Node3D" unique_id=1063330010]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=773821861]
+environment = SubResource("Environment_8o1bq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=954222837]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Floor" type="CSGBox3D" parent="." unique_id=1495673076]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+size = Vector3(50, 1, 50)
+
+[node name="Platform1" type="CSGBox3D" parent="." unique_id=1454704229]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, -5)
+use_collision = true
+size = Vector3(4, 1, 4)
+
+[node name="Platform2" type="CSGBox3D" parent="." unique_id=1209405140]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, -10)
+use_collision = true
+size = Vector3(4, 1, 4)
+
+[node name="Ramp" type="CSGBox3D" parent="." unique_id=1647658333]
+transform = Transform3D(1, 0, 0, 0, 0.9999863, -0.005235964, 0, 0.005235964, 0.9999863, -10, 0.5, -5)
+use_collision = true
+size = Vector3(5, 1, 10)
+
+[node name="Player" parent="." unique_id=580488641 groups=["player"] instance=ExtResource("1_uoy6e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0709038, 0)
+script = ExtResource("2_6vwyx")
+speed = 6.0
+jump_velocity = 5.0
